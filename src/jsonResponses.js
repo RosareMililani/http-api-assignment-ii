@@ -23,6 +23,14 @@ const getUsers = (request, response) => {
   respondJSON(request, response, 200, responseJSON);
 };
 
+const notReal = (request, response) => {
+  const responseJSON = {
+    users,
+  };
+
+  respondJSON(request, response, 400, responseJSON);
+};
+
 const addUser = (request, response, body) => {
   const responseJSON = {
     message: 'Name and age are both required',
@@ -64,15 +72,6 @@ const notRealUser = (request, response, body) => {
 
   const responseCode = 404;
 
-  /* if (users[body.name]) {
-    responseCode = 204;
-  } else {
-    users[body.name] = {};
-    users[body.name].name = body.name;
-  }
-
-  users[body.name].age = body.age; */
-
   if (responseCode === 404) {
     responseJSON.message = 'Resource Not Found';
     return respondJSON(request, response, responseCode, responseJSON);
@@ -85,4 +84,5 @@ module.exports = {
   getUsers,
   addUser,
   notRealUser,
+  notReal,
 };

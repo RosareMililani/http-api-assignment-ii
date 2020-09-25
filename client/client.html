@@ -35,7 +35,7 @@
           content.innerHTML = '<b>Bad Request</b>';
           break;
         case 404:
-          contend.innerHTML = '<b>Resource Not Found</b>';
+          content.innerHTML = '<b>Resource Not Found</b>';
           break;
         default:
           content.innerHTML = '<b>Error code no implemented by client</b>';
@@ -68,33 +68,72 @@
       return false;
     };
 
-/*     const sendUsers = (e, url, userForm) => {
+    const sendUsers = (e, url, userForm) => {
       e.preventDefault();
 
       const xhr = new XMLHttpRequest();
       //xhr.open(nameMethod, nameAction);
-      xhr.open(url, userForm);
+      xhr.open(methodSelect.value, url);
 
       xhr.setRequestHeader('Accept', 'application/json');
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      //xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
       xhr.onload = () => handleResponse(xhr);
 
+      xhr.send();
+
+      //xhr.onload = () => handleResponse(xhr);
+
       //const formData = `name=${nameField.value}&age=${ageField.value}`;
-      xhr.send(formData);
+      //xhr.send(formData);
 
       return false;
+    };
+
+    /* const sendAjax = (url, acceptedType) => {
+      //console.log(url, acceptedType);
+      const xhr = new XMLHttpRequest();
+
+      xhr.open("GET", url);
+      xhr.setRequestHeader('Accept', 'application/json');
+
+      xhr.onload = () => handleResponse(xhr);
+
+      xhr.send();
+
     }; */
 
     const init = () => {
       const nameForm = document.querySelector('#nameForm');
-      //const userForm = document.querySelector('#userForm');
+      const userForm = document.querySelector('#userForm');
 
       const addUser = (e) => sendPost(e, nameForm);
-      //const getUser = (e) => sendUsers(e, userForm);
+      const getUser = (e) => sendUsers(e, userForm);
 
       nameForm.addEventListener('submit', addUser);
+
+      //change to 'submit'
+      /* userForm.addEventListener('submit', () =>{
+        //.log(urlField.value);
+        //sendUsers(urlField.value);
+        console.log(urlField.value);
+        sendUsers(urlField.value);
+      }); */
+      
+      urlField.addEventListener("change", () =>{
+        console.log(urlField.value);
+        sendUsers(urlField.value);
+      });
+
+      /* methodSelect.addEventListener("change", () =>{
+        console.log(methodSelect.value);
+        sendUsers(methodSelect.value);
+      }); */
+      
       //userForm.addEventListener('submit', getUser);
+
+      
+      //sendButton.onclick = () => sendAjax(document.getElementById("page").value, document.getElementById("type").value);
     };
 
     window.onload = init;
@@ -117,8 +156,8 @@
         <option value='/notReal'>/notReal</option>
       </select>
       <select id="methodSelect">
-        <option value="get">GET</option>
-        <option value="head">HEAD</option>
+        <option value="GET">GET</option>
+        <option value="HEAD">HEAD</option>
       </select>
       <input type="submit" value="Send" />
     </form>

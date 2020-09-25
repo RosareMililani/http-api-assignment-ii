@@ -65,6 +65,8 @@ const handleGet = (request, response, parsedUrl) => {
     jsonHandler.getUsers(request, response);
   } else if (parsedUrl.pathname === '/') {
     htmlHandler.getIndex(request, response);
+  } else if (parsedUrl.pathname === '/badUsers') {
+    htmlHandler.notRealUser(request, response);
   } else {
     htmlHandler.getNotFound(request, response);
   }
@@ -75,7 +77,8 @@ const onRequest = (request, response) => {
 
   if (request.method === 'POST') {
     handlePost(request, response, parsedUrl);
-  } else {
+  } 
+  else {
     handleGet(request, response, parsedUrl);
   }
 };

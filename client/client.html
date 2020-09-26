@@ -68,25 +68,17 @@
       return false;
     };
 
-    const sendUsers = (e, url, userForm) => {
+    const sendUsers = (e) => {
       e.preventDefault();
+      const method = methodSelect.value;
+      const url = urlField.value;
 
       const xhr = new XMLHttpRequest();
-      //xhr.open(nameMethod, nameAction);
-      xhr.open(methodSelect.value, url);
-
+      xhr.open(method, url);
       xhr.setRequestHeader('Accept', 'application/json');
-      //xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
       xhr.onload = () => handleResponse(xhr);
 
       xhr.send();
-
-      //xhr.onload = () => handleResponse(xhr);
-
-      //const formData = `name=${nameField.value}&age=${ageField.value}`;
-      //xhr.send(formData);
-
       return false;
     };
 
@@ -111,6 +103,7 @@
       const getUser = (e) => sendUsers(e, userForm);
 
       nameForm.addEventListener('submit', addUser);
+      userForm.addEventListener("submit", sendUsers);
 
       //change to 'submit'
       /* userForm.addEventListener('submit', () =>{
@@ -119,21 +112,17 @@
         console.log(urlField.value);
         sendUsers(urlField.value);
       }); */
-      
-      urlField.addEventListener("change", () =>{
+
+      /* urlField.addEventListener("change", () =>{
         console.log(urlField.value);
         sendUsers(urlField.value);
       });
 
-      /* methodSelect.addEventListener("change", () =>{
+      methodSelect.addEventListener("change", () =>{
         console.log(methodSelect.value);
         sendUsers(methodSelect.value);
       }); */
-      
-      //userForm.addEventListener('submit', getUser);
 
-      
-      //sendButton.onclick = () => sendAjax(document.getElementById("page").value, document.getElementById("type").value);
     };
 
     window.onload = init;

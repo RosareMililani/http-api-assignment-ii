@@ -15,10 +15,13 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
-const getUsers = (request, response) => {
+const getUsers = (request, response, body) => {
   const responseJSON = {
     users,
+    //message: users,
   };
+
+  //responseJSON.message = users;
 
   respondJSON(request, response, 200, responseJSON);
 };
@@ -56,6 +59,11 @@ const addUser = (request, response, body) => {
     responseJSON.message = 'Created successfully';
     return respondJSON(request, response, responseCode, responseJSON);
   }
+
+  /* if (responseCode === 200) {
+    responseJSON.message = 'Created nothing';
+    return respondJSON(request, response, responseCode, responseJSON);
+  } */
 
   return respondJSONMeta(request, response, responseCode);
 };

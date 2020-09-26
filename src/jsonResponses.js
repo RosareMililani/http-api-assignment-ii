@@ -15,13 +15,13 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
-const getUsers = (request, response, body) => {
+const getUsers = (request, response) => {
   const responseJSON = {
     users,
-    //message: users,
+    // message: users,
   };
 
-  //responseJSON.message = users;
+  // responseJSON.message = users;
 
   respondJSON(request, response, 200, responseJSON);
 };

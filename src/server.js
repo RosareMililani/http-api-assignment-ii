@@ -12,8 +12,8 @@ const handlePost = (request, response, parsedUrl) => {
 
     // error occurs while trying to read information from client
     // asynchronus
-    request.on('error', (err) => {
-      console.dir(err);
+    request.on('error', () => {
+      // console.dir(err);
       response.statusCode = 400;
       response.end();
     });
@@ -37,8 +37,8 @@ const handlePost = (request, response, parsedUrl) => {
 
     // error occurs while trying to read information from client
     // asynchronus
-    request.on('error', (err) => {
-      console.dir(err);
+    request.on('error', () => {
+      // console.dir(err);
       response.statusCode = 404;
       response.end();
     });
@@ -58,6 +58,7 @@ const handlePost = (request, response, parsedUrl) => {
   }
 };
 
+// direct links
 const handleGet = (request, response, parsedUrl) => {
   if (parsedUrl.pathname === '/style.css') {
     htmlHandler.getCSS(request, response);
@@ -84,4 +85,4 @@ const onRequest = (request, response) => {
 
 http.createServer(onRequest).listen(port);
 
-console.log(`Listening on 127.0.0.1: ${port}`);
+// console.log(`Listening on 127.0.0.1: ${port}`);
